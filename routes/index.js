@@ -20,7 +20,7 @@
 
 const keystone = require('keystone');
 const middleware = require('./middleware');
-const importRoutes = keystone.importer(__dirname);
+//const importRoutes = keystone.importer(__dirname);
 const cors = require('cors');
 
 const schema = require('../graphql/schema-compose');
@@ -37,9 +37,9 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 // Import Route Controllers
-const routes = {
+/*const routes = {
 	views: importRoutes('./views'),
-};
+};*/
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
