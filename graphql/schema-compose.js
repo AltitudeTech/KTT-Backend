@@ -3,11 +3,9 @@
 */
 const GQC = require('graphql-compose').GQC;
 
-const typeComposers = require('./composers/eventTC');
+const typeComposers = require('./composers/index');
 
-//console.log(typeComposers);
-
-var {
+const {
 	EventTC,
 	PollTC,
 	PollVoteTC,
@@ -18,9 +16,6 @@ var {
 	StateTC
 } = typeComposers;
 
-console.log(PollVoteTC);
-console.log(EventTC);
-//console.log(PollTC.get('$findById'));
 //Add fields and resolvers to rootQuery
 GQC.rootQuery().addFields({
 	eventById: EventTC.get('$findById'),
@@ -29,7 +24,7 @@ GQC.rootQuery().addFields({
 	eventMany: EventTC.get('$findMany'),
 	eventTotal: EventTC.get('$count'),
 	pollById: PollTC.get('$findById'),
-	/*pollByIds: PollTC.get('$findByIds'),
+	pollByIds: PollTC.get('$findByIds'),
 	pollOne: PollTC.get('$findOne'),
 	pollMany: PollTC.get('$findMany'),
 	pollTotal: PollTC.get('$count'),
@@ -37,7 +32,34 @@ GQC.rootQuery().addFields({
 	pollVoteByIds: PollVoteTC.get('$findByIds'),
 	pollVoteOne: PollVoteTC.get('$findOne'),
 	pollVoteMany: PollVoteTC.get('$findMany'),
-	pollVoteTotal: PollVoteTC.get('$count')*/
+	pollVoteTotal: PollVoteTC.get('$count'),
+	newsById: NewsTC.get('$findById'),
+	newsByIds: NewsTC.get('$findByIds'),
+	newsOne: NewsTC.get('$findOne'),
+	newsMany: NewsTC.get('$findMany'),
+	newsTotal: NewsTC.get('$count'),
+	pollingCenterById: PollingCenterTC.get('$findById'),
+	pollingCenterByIds: PollingCenterTC.get('$findByIds'),
+	pollingCenterOne: PollingCenterTC.get('$findOne'),
+	pollingCenterMany: PollingCenterTC.get('$findMany'),
+	pollingCenterTotal: PollingCenterTC.get('$count'),
+	wardById: WardTC.get('$findById'),
+	wardByIds: WardTC.get('$findByIds'),
+	wardOne: WardTC.get('$findOne'),
+	wardMany: WardTC.get('$findMany'),
+	wardTotal: WardTC.get('$count'),
+	localGovernmentById: LocalGovernmentTC.get('$findById'),
+	localGovernmentByIds: LocalGovernmentTC.get('$findByIds'),
+	localGovernmentOne: LocalGovernmentTC.get('$findOne'),
+	localGovernmentMany: LocalGovernmentTC.get('$findMany'),
+	localGovernmentTotal: LocalGovernmentTC.get('$count'),
+	stateById: StateTC.get('$findById'),
+	stateByIds: StateTC.get('$findByIds'),
+	stateOne: StateTC.get('$findOne'),
+	stateMany: StateTC.get('$findMany'),
+	stateTotal: StateTC.get('$count'),
+	/*feedMany: FeedTC.get('$findMany'),
+	feed: FeedTC.get('$recentFeed'),*/
 });
 
 /*GQC.rootMutation().addFields({
@@ -70,6 +92,5 @@ GQC.rootQuery().addFields({
 }*/
 
 const schema = GQC.buildSchema();
-//console.log(schema);
 
 module.exports = schema;
