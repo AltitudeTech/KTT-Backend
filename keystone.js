@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 // Require keystone
-var keystone = require('keystone');
+const keystone = require('keystone');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -46,6 +46,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	delegates: ['Delegate', 'DelegatePosition', 'DelegateSubPosition'],
 	homePage: ['Event', 'News'],
 	poll: ['Poll', 'PollVote'],
 	country: ['State', 'LocalGovernment', 'Ward', 'PollingCenter'],
@@ -68,26 +69,4 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 	+ '\nset up your mailgun integration');
 }
 
-///-------
-/*const states = require('./nigeria-states');
-/*let s = states.map((state)=>{
-	return state.state.name;
-})
-states.forEach((state)=>{
-	let ids = []
-	let stateName = state.state.name;
-	//let localGovNames = state.state.locals.map((local)=>{
-	state.state.locals.forEach((local)=>{
-	 console.log(local.name);
-	 ids.push(local.name);
-	 if (ids.length === state.state.locals.length) {
-	 	console.log(ids);
-	 }
-	})
-	//localGovNames.forEach
-	//console.log(localGovNames);
-	//console.log(stateName);
-	console.log('---------------------');
-})*/
-///-------
 keystone.start();
