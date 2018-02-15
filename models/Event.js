@@ -1,11 +1,11 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+const Types = keystone.Field.Types;
 
 /**
  * Event Model
  * ==========
  */
-var Event = new keystone.List('Event', {
+const Event = new keystone.List('Event', {
     track: true
 });
 
