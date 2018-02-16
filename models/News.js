@@ -17,11 +17,11 @@ News.add({
   author: {type: Types.Text, initial: true, index: true},
   isBreaking: {type: Boolean, default: false, initial: true, index: true},
   body: {
-    p1: {type: Types.Textarea, initial: true, index: true, height: 200},
-    p2: {type: Types.Textarea, initial: true, index: true, height: 200},
+    p1: {type: Types.Textarea, index: true, height: 200},
+    p2: {type: Types.Textarea,  index: true, height: 200},
     image: { type: Types.CloudinaryImage },
-    p3: {type: Types.Textarea, initial: true, index: true, height: 200},
-    p4: {type: Types.Textarea, initial: true, index: true, height: 200},
+    p3: {type: Types.Textarea, index: true, height: 200},
+    p4: {type: Types.Textarea, index: true, height: 200},
   },
 });
 
