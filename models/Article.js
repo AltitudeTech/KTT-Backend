@@ -2,14 +2,14 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * News Model
+ * Article Model
  * ==========
  */
-var News = new keystone.List('News', {
+var Article = new keystone.List('Article', {
     track: true
 });
 
-News.add({
+Article.add({
   title: { type: String, required: true, initial: true },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
@@ -30,6 +30,6 @@ News.add({
 /**
  * Registration
  */
-News.defaultSort = '-date';
-News.defaultColumns = 'publishedDate, title, state, isBreaking';
-News.register();
+Article.defaultSort = '-date';
+Article.defaultColumns = 'publishedDate, title, state, isBreaking';
+Article.register();
