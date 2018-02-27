@@ -10,7 +10,7 @@ var News = new keystone.List('News', {
 });
 
 News.add({
-  title: { type: String, required: true, initial: true },
+  title: { type: String, required: true, index: true, initial: true },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
   //heroImage: { type: Types.CloudinaryImage },

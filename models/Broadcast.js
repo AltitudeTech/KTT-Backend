@@ -10,7 +10,7 @@ const Broadcast = new keystone.List('Broadcast', {
 });
 
 Broadcast.add({
-	title: { type: Types.Text, required: true, index: true, initial: true },
+	title: { type: String, required: true, index: true, initial: true },
   //description: {type: Types.Textarea, index: true, height: 150, initial: true},
   description: {type: Types.Text, index: true, initial: true},
   state: { type: Types.Select, options: 'draft, published, retracted', default: 'draft', index: true },
@@ -28,12 +28,14 @@ Broadcast.add({
 });
 
 Broadcast.schema.post('save', function () {
+  console.log(this);
   if (this.state === 'published') {
     if (this.sendToAll) {
       console.log('Sending to all outlets');
       //this.sendNotificationEmail();
     }
   }
+  console.log('saved mofocker');
 });
 
 /**

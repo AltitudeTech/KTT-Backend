@@ -12,8 +12,8 @@ var Video = new keystone.List('Video', {
 });
 
 Video.add({
-	title: { type: String, required: true, initial: true },
-	publishedDate: { type: Date, default: Date.now },	
+	title: { type: String, required: true, index: true, initial: true },
+	publishedDate: { type: Date, default: Date.now },
 	videoUrl: { type: Types.Text, initial: true },
 	HausaVideoUrl: { type: Types.Text, initial: true },
 	YourubeVideoUrl: { type: Types.Text, initial: true },

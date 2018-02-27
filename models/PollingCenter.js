@@ -10,7 +10,7 @@ var PollingCenter = new keystone.List('PollingCenter', {
 });
 
 PollingCenter.add({
-  name: { type: String, initial: true, index: true, required: true },
+  name: { type: String, required: true, index: true },
   address: { type: Types.Location, initial: true, index: true, required: true },
 });
 

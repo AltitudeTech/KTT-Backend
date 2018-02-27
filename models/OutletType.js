@@ -8,7 +8,7 @@ var Types = keystone.Field.Types;
 var OutletType = new keystone.List('OutletType');
 
 OutletType.add({
-	name: { type: Types.Text, required: true, index: true },
+	name: { type: String, required: true, index: true },
 });
 
 /**

@@ -12,7 +12,7 @@ var Logo = new keystone.List('Logo', {
 });
 
 Logo.add({
-	name: { type: String, required: true, initial: true },
+	name: { type: String, required: true, index: true },
 	publishedDate: { type: Date, default: Date.now },
 	imageUrl: { type: Types.Text, initial: true },
 	HausaImageUrl: { type: Types.Text, initial: true },
