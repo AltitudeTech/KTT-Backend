@@ -5,14 +5,17 @@ var Types = keystone.Field.Types;
  * Outlet Model
  * ==========
  */
-var Outlet = new keystone.List('Outlet');
+var Outlet = new keystone.List('Outlet', {
+	track: true
+});
 
 Outlet.add({
 	name: { type: String, required: true, index: true },
 	description: {type: Types.Text, index: true, initial: true },
 	phone: {type: Types.Text, initial: true, index: true},
 	website: {type: Types.Text, initial: true, index: true},
-	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
+	email: { type: Types.Email, required: false, unique: false, initial: true },
+	//emailAddress: { type: Types.Email, initial: true, required: false, unique: true, index: true },
 	username: {type: Types.Text, index: true},
 	password: { type: Types.Password, required: false },
 	type: { type: Types.Relationship, ref: 'OutletType', many: true,  initial: true },
@@ -30,5 +33,6 @@ Outlet.add({
 /**
  * Registration
  */
+Outlet.defaultSort = '-createdAt';
 Outlet.defaultColumns = 'name, email, type';
 Outlet.register();
