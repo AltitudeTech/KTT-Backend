@@ -1,6 +1,7 @@
 const composeWithMongoose = require('graphql-compose-mongoose').composeWithMongoose;
 const keystone = require('keystone');
 
+const User = keystone.list('User').model;
 const Event = keystone.list('Event').model;
 const Poll = keystone.list('Poll').model;
 const PollVote = keystone.list('PollVote').model;
@@ -10,12 +11,14 @@ const Ward = keystone.list('Ward').model;
 const LocalGovernment = keystone.list('LocalGovernment').model;
 const State = keystone.list('State').model;
 
-/*const UserTCOptions = {
+const UserTCOptions = {
   fields:{
     remove: ['password','isAdmin']
   }
-};*/
+};
 
+const UserTC = composeWithMongoose(User, UserTCOptions);
+UserTC.addFields({jwt: 'String'})
 const EventTC = composeWithMongoose(Event, {});
 const PollTC = composeWithMongoose(Poll, {});
 const PollVoteTC = composeWithMongoose(PollVote, {});
@@ -62,6 +65,6 @@ StateTC.addRelation('locals', {
 );
 
 module.exports = {
-  EventTC, PollTC, PollVoteTC, NewsTC,
+  UserTC, EventTC, PollTC, PollVoteTC, NewsTC,
   PollingCenterTC, WardTC, LocalGovernmentTC, StateTC
 };

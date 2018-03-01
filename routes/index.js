@@ -29,6 +29,10 @@ const graphql = require('graphql');
 const bodyParser = require('body-parser');
 const graphqlExpress = require('graphql-server-express').graphqlExpress;
 const graphiqlExpress = require('graphql-server-express').graphiqlExpress;
+const jwt = require('express-jwt');
+
+const User = keystone.list('User').model;
+//const JWT_SECRET = require('../config').JWT_SECRET;
 
 if (process.env.NODE_ENV == 'development') {
 	// Common Middleware
@@ -43,12 +47,42 @@ if (process.env.NODE_ENV == 'development') {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-	app.use(cors());
+	app.graphqlSchema = schema;
+
+	//Configure CORS -- Remove localhost in final version
+	var whitelist = ['http://ktt-app.herokuapp.com', 'http://localhost:5000', 'http://127.0.0.1:3000']
+	var corsOptions = {
+	  origin: function (origin, callback) {
+	    if (whitelist.indexOf(origin) !== -1) {
+	      callback(null, true)
+	    } else {
+	      callback(new Error('Not allowed by CORS'))
+	    }
+	  }
+	}
+
+	//app.use(cors());
 	//
 	// Register API middleware
 	// -------------------------------------------------------------------------
-	app.graphqlSchema = schema;
-	app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+	//NO JWT
+	//app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+	//enable cors and jwt middleware on api route
+	app.use('/graphql', cors(corsOptions), bodyParser.json(), jwt({
+	  secret: process.env.JWT_SECRET,
+	  credentialsRequired: false,
+	}), graphqlExpress(req => {
+		//req.user is provided by jwt from the authorization header provided
+		//User.findOne({ _id: req.user._id, version: req.user.version}).then((user)=>console.log(user))
+		//req.user ? console.log(req.user) : console.log('no user present')
+		return ({
+		  schema: schema,
+		  context: {
+		    user: req.user ?
+		      User.findOne({ _id: req.user._id || req.user.id, version: req.user.version}) : Promise.resolve(null),
+		  },
+		})}
+	));
 	app.use('/graphiql', graphiqlExpress({
 			endpointURL: '/graphql'
 	}));
