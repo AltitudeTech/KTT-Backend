@@ -50,7 +50,7 @@ exports = module.exports = function (app) {
 	app.graphqlSchema = schema;
 
 	//Configure CORS -- Remove localhost in final version
-	var whitelist = ['http://ktt-app.herokuapp.com', 'http://localhost:5000', 'http://127.0.0.1:3000']
+	var whitelist = ['http://ktt-app.herokuapp.com', 'http://localhost']
 	var corsOptions = {
 	  origin: function (origin, callback) {
 	    if (whitelist.indexOf(origin) !== -1) {
@@ -68,7 +68,8 @@ exports = module.exports = function (app) {
 	//NO JWT
 	//app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 	//enable cors and jwt middleware on api route
-	app.use('/graphql', cors(corsOptions), bodyParser.json(), jwt({
+	//app.use('/graphql', cors(corsOptions), bodyParser.json(), jwt({
+	app.use('/graphql', cors(), bodyParser.json(), jwt({
 	  secret: process.env.JWT_SECRET,
 	  credentialsRequired: false,
 	}), graphqlExpress(req => {
