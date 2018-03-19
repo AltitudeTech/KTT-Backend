@@ -75,18 +75,14 @@ exports = module.exports = function (app) {
 	  secret: process.env.JWT_SECRET,
 	  credentialsRequired: false,
 	}), graphqlExpress(req => {
-		//req.user is provided by jwt from the authorization header provided
-		//User.findOne({ _id: req.user._id, version: req.user.version}).then((user)=>console.log(user))
-		//req.user ? console.log(req.user) : console.log('no user present')
+		console.log(req.user);
 		return ({
 		  schema: schema,
 		  context: {
 		    /*user: req.user ?
 		      User.findOne({ _id: req.user._id || req.user.id, version: req.user.version}) : Promise.resolve(null),*/
-				outlet: req.outlet ?
-		      Outlet.findOne({ _id: req.outlet._id || req.outlet.id}) : Promise.resolve(null),
-					candidate: req.candidate ?
-			      Candidate.findOne({ _id: req.candidate._id || req.candidate.id}) : Promise.resolve(null),
+				Outlet: req.user.type==='Outlet' ?
+		      Outlet.findOne({ _id: req.user._id || req.user.id}) : Promise.resolve(null),
 		  },
 		})}
 	));
