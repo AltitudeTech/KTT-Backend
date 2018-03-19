@@ -75,14 +75,16 @@ exports = module.exports = function (app) {
 	  secret: process.env.JWT_SECRET,
 	  credentialsRequired: false,
 	}), graphqlExpress(req => {
+		let context = {}
+		if (req.user) {
+			context = {
+				Outlet: req.user.type==='Outlet' ?
+				Outlet.findOne({ _id: req.user._id || req.user.id}) : Promise.resolve(null)
+			}
+		}
 		return ({
 		  schema: schema,
-		  context: {
-		    /*user: req.user ?
-		      User.findOne({ _id: req.user._id || req.user.id, version: req.user.version}) : Promise.resolve(null),*/
-				Outlet: req.user.type==='Outlet' ?
-		      Outlet.findOne({ _id: req.user._id || req.user.id}) : Promise.resolve(null),
-		  },
+			context: context
 		})}
 	));
 	app.use('/graphiql', graphiqlExpress({

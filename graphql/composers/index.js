@@ -36,7 +36,7 @@ const PollingCenterTC = exports.PollingCenterTC = composeWithMongoose(PollingCen
 const WardTC = exports.WardTC = composeWithMongoose(Ward, {});
 const LocalGovernmentTC = exports.LocalGovernmentTC = composeWithMongoose(LocalGovernment, {});
 const StateTC = exports.StateTC = composeWithMongoose(State, {});
-const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, {});
+const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, UserTCOptions);
 const OutletTypeTC = exports.OutletTypeTC = composeWithMongoose(OutletType, {});
 
 /**
