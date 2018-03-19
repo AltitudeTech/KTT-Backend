@@ -3,9 +3,7 @@ const authAccess = exports.authAccess = (sourceType, resolvers) => {
 		resolvers[k] = resolvers[k].wrapResolve(next => async (rp) => {
 			//const { source, args, context, info } = resolveParams = rp
 			try {
-				const sourceUser = await rp.context[sourceType]; //eg rp.context.Candidate
-				console.log(sourceType);
-				console.log(sourceUser);
+				const sourceUser = await rp.context[sourceType]; //eg rp.context.Candidate				
 				if (!sourceUser){
 					console.log('Unauthorized request');
 					//console.log(new Error('You must be signed in as a candidate, to have access to this action.'));

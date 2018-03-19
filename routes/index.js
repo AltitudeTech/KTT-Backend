@@ -75,7 +75,6 @@ exports = module.exports = function (app) {
 	  secret: process.env.JWT_SECRET,
 	  credentialsRequired: false,
 	}), graphqlExpress(req => {
-		console.log(req.user);
 		return ({
 		  schema: schema,
 		  context: {
