@@ -31,7 +31,9 @@ const graphqlExpress = require('graphql-server-express').graphqlExpress;
 const graphiqlExpress = require('graphql-server-express').graphiqlExpress;
 const jwt = require('express-jwt');
 
-const User = keystone.list('User').model;
+//const User = keystone.list('User').model;
+const Outlet = keystone.list('Outlet').model;
+const Candidate = keystone.list('Candidate').model;
 //const JWT_SECRET = require('../config').JWT_SECRET;
 
 if (process.env.NODE_ENV == 'development') {
@@ -79,8 +81,12 @@ exports = module.exports = function (app) {
 		return ({
 		  schema: schema,
 		  context: {
-		    user: req.user ?
-		      User.findOne({ _id: req.user._id || req.user.id, version: req.user.version}) : Promise.resolve(null),
+		    /*user: req.user ?
+		      User.findOne({ _id: req.user._id || req.user.id, version: req.user.version}) : Promise.resolve(null),*/
+				outlet: req.outlet ?
+		      Outlet.findOne({ _id: req.outlet._id || req.outlet.id}) : Promise.resolve(null),
+					candidate: req.candidate ?
+			      Candidate.findOne({ _id: req.candidate._id || req.candidate.id}) : Promise.resolve(null),
 		  },
 		})}
 	));
