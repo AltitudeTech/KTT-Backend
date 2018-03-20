@@ -46,11 +46,13 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	media: ['Broadcast', 'Outlet', 'OutletType'],
+	store: ['Article', 'Banner', 'Logo', 'Video'],
 	delegates: ['Delegate', 'DelegatePosition', 'DelegateSubPosition'],
 	homePage: ['Event', 'News'],
 	poll: ['Poll', 'PollVote'],
 	country: ['State', 'LocalGovernment', 'Ward', 'PollingCenter'],
-	posts: ['posts', 'post-categories'],
+	//posts: ['posts', 'post-categories'],
 	galleries: 'galleries',
 	enquiries: 'enquiries',
 	users: 'users',

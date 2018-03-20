@@ -10,10 +10,9 @@ const Event = new keystone.List('Event', {
 });
 
 Event.add({
-  title: { type: String, initial: true, index: true, required: true },
+  title: { type: String, required: true, index: true, initial: true },
   date: { type: Types.Datetime, initial: true, index: true},
   description: {type: Types.Text, initial: true, index: true},
-  isActive: {type: Boolean, default: false, initial: true, index: true},
 });
 
 
@@ -21,5 +20,5 @@ Event.add({
  * Registration
  */
 Event.defaultSort = '-date';
-Event.defaultColumns = 'date, title, isActive, description';
+Event.defaultColumns = 'date, title, description';
 Event.register();

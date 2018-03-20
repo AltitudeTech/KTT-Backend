@@ -10,7 +10,7 @@ var State = new keystone.List('State', {
 });
 
 State.add({
-  name: { type: String, initial: true, index: true, required: true },
+  name: { type: String, required: true, index: true },
   locals: { type: Types.Relationship, ref: 'LocalGovernment', many: true },
 });
 

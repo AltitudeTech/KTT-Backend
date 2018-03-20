@@ -10,7 +10,7 @@ var Poll = new keystone.List('Poll', {
 });
 
 Poll.add({
-  title: { type: String, initial: true, index: true, required: true },
+  title: { type: String, required: true, index: true, initial: true },
   votes: { type: Types.Relationship, ref: 'PollVote', many: true },
   //state: { type: Types.Select, options: 'scheduled, active, archived', default: 'scheduled', index: true },
   startDate: { type: Types.Datetime, index: true, initial: true},

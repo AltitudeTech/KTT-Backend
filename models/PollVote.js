@@ -7,7 +7,8 @@ var Types = keystone.Field.Types;
  */
 
 var PollVote = new keystone.List('PollVote', {
-	track: true
+	track: true,
+	noedit: true,
 });
 
 voteOptions = [
