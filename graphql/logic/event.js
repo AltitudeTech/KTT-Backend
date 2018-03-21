@@ -5,7 +5,6 @@ const nextEvent = exports.nextEvent = ( TC ) => {
 			filter: {
 				_operators: {
 					date: {gte: new Date().toISOString()}
-					// date: {gte: '2020-03-19T14:00:35.316Z'}
 				}
 			}
 		}
