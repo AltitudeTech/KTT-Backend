@@ -21,10 +21,27 @@ voteOptions = [
 PollVote.add({
 	phoneNumber: {type: Types.Text, initial: true, index: true, required: true },
 	vote: {type: Types.Select, options: voteOptions, index: true, required: true, initial: true},
-	isVerified: {type: Boolean, default: false, initial: true, index: true},
-	poll: { type: Types.Relationship, ref: 'Poll', many: false },
+	//isVerified: {type: Boolean, default: false, initial: true, index: true},
+	poll: { type: Types.Relationship, ref: 'Poll', many: false, required: true, initial: true },
+});
+
+PollVote.schema.post('save', function () {
+  keystone.list('Poll').model.findOne({ _id: this.poll}).exec((err, poll)=>{
+    if (err) {
+      throw new Error(err);
+      return
+    }
+    poll.votes.push(this._id);
+    poll.save((err, poll)=>{
+      if (err) {
+        console.log(err);
+      }
+    });
+  })
 });
 
 PollVote.relationship({ ref: 'Poll', path: 'polls', refPath: 'votes' });
+
+PollVote.defaultColumns = 'phoneNumber, vote, isVerified, totalVotes';
 
 PollVote.register();

@@ -16,7 +16,8 @@ const LocalGovernment = keystone.list('LocalGovernment').model;
 const State = keystone.list('State').model;
 const Outlet = keystone.list('Outlet').model;
 const OutletType = keystone.list('OutletType').model;
-const Candidate = keystone.list('Candidate').model;
+const Gallery = keystone.list('Gallery').model;
+const GalleryImage = keystone.list('GalleryImage').model;
 
 /**
 * Config
@@ -38,6 +39,8 @@ const LocalGovernmentTC = exports.LocalGovernmentTC = composeWithMongoose(LocalG
 const StateTC = exports.StateTC = composeWithMongoose(State, {});
 const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, UserTCOptions);
 const OutletTypeTC = exports.OutletTypeTC = composeWithMongoose(OutletType, {});
+const GalleryTC = exports.GalleryTC = composeWithMongoose(Gallery, {});
+const GalleryImageTC = exports.GalleryImageTC = composeWithMongoose(GalleryImage, {});
 
 /**
 * Add JWT to user models for login
