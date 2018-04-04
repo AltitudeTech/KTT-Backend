@@ -18,7 +18,8 @@ const {
 	CandidateTC,
 	ViewerTC,
 	OutletViewerTC,
-	GalleryTC
+	GalleryTC,
+	KttvVideoTC
 } = require('./composers/index');
 const addRelationships = require('./relationships');
 const addResolvers = require('./resolvers');
@@ -27,7 +28,7 @@ const addViewers = require('./viewers');
 //Get logic middleware
 const { authAccess, updateSelf, createSelfRelationship, updateSelfRelationship } = require('./logic/common');
 const { nextEvent } = require('./logic/event');
-const { lastPoll } = require('./logic/poll');
+const { lastPolls } = require('./logic/poll');
 
 //Add relationships and resolvers to schema
 addViewers();
@@ -43,7 +44,7 @@ GQC.rootQuery().addFields({
     type: 'Date',
     resolve: () => (new Date().toISOString()),
   },
-	lastPoll: lastPoll(PollTC),
+	lastPolls: lastPolls(PollTC),
 	eventById: EventTC.get('$findById'),
 	eventOne: EventTC.get('$findOne'),
 	nextEvent: nextEvent(EventTC),
@@ -60,6 +61,7 @@ GQC.rootQuery().addFields({
 	stateMany: StateTC.get('$findMany'),
 	galleryOne: GalleryTC.get('$findOne'),
 	galleryMany: GalleryTC.get('$findMany'),
+	KttvVideoMany: KttvVideoTC.get('$findMany'),
 });
 
 GQC.rootMutation().addFields({

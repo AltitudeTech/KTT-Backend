@@ -25,23 +25,48 @@ PollVote.add({
 	poll: { type: Types.Relationship, ref: 'Poll', many: false, required: true, initial: true },
 });
 
-PollVote.schema.post('save', function () {
-  keystone.list('Poll').model.findOne({ _id: this.poll}).exec((err, poll)=>{
-    if (err) {
-      throw new Error(err);
-      return
-    }
-    poll.votes.push(this._id);
-    poll.save((err, poll)=>{
-      if (err) {
-        console.log(err);
-      }
-    });
-  })
+PollVote.schema.pre('save', async function(next) {
+	try {
+		let poll = await keystone.list('Poll').model.findOne({ _id: this.poll }).exec();
+		if (!poll) {
+			next(new Error('This poll does not exist'))
+		}
+		//Checks to make sure answer is not an option
+		if (this.vote === "c" && !poll.option3.text )
+			next(new Error('This specified option C is not available on this poll'))
+		if (this.vote === "d" && !poll.option4.text )
+			next(new Error('This specified option D is not available on this poll'))
+
+		let pollVote = await keystone.list('PollVote').model.findOne({ phoneNumber: this.phoneNumber, poll: this.poll }).exec();
+		if (!pollVote) {
+			next();
+		}
+		next(new Error('This phone number has already been used in this poll'))
+	} catch (e) {
+		next(new Error(e))
+	}
+})
+
+PollVote.schema.post('save', async function() {
+	try {
+		let poll = await keystone.list('Poll').model.findOne({ _id: this.poll}).exec();
+		poll.save();
+	} catch (e) {
+		throw new Error(e);
+	}
 });
 
-PollVote.relationship({ ref: 'Poll', path: 'polls', refPath: 'votes' });
+PollVote.schema.post('remove', async function() {
+	try {
+		let poll = await keystone.list('Poll').model.findOne({ _id: this.poll}).exec();
+		poll.save();
+	} catch (e) {
+		throw new Error(e);
+	}
+});
 
-PollVote.defaultColumns = 'phoneNumber, vote, isVerified, totalVotes';
+// PollVote.relationship({ ref: 'Poll', path: 'polls', refPath: 'votes' });
+
+PollVote.defaultColumns = 'phoneNumber, vote, poll';
 
 PollVote.register();

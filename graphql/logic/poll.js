@@ -1,10 +1,10 @@
-const lastPoll = exports.lastPoll = (TC) => {
+const lastPolls = exports.lastPolls = (TC) => {
 	return TC.get('$findMany').wrapResolve(next => async (rp) => {
 		rp.args = {
 			limit: 2,
-			sort: 'STARTDATE_DESC',
+			sort: { startDate: -1 },
 			filter: {
-				_operators: { startDate: { lte: new Date("2019-06-04").toISOString() } }
+				_operators: { startDate: { lte: new Date().toISOString() } }
 			}
 		}
 		return next(rp);

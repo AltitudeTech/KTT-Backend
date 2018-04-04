@@ -18,6 +18,7 @@ const Outlet = keystone.list('Outlet').model;
 const OutletType = keystone.list('OutletType').model;
 const Gallery = keystone.list('Gallery').model;
 const GalleryImage = keystone.list('GalleryImage').model;
+const KttvVideo = keystone.list('KttvVideo').model;
 
 /**
 * Config
@@ -41,6 +42,7 @@ const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, UserTCOptions);
 const OutletTypeTC = exports.OutletTypeTC = composeWithMongoose(OutletType, {});
 const GalleryTC = exports.GalleryTC = composeWithMongoose(Gallery, {});
 const GalleryImageTC = exports.GalleryImageTC = composeWithMongoose(GalleryImage, {});
+const KttvVideoTC = exports.KttvVideoTC = composeWithMongoose(KttvVideo, {});
 
 /**
 * Add JWT to user models for login

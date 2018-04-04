@@ -50,20 +50,15 @@ GalleryImage.schema.pre('save', function (next) {
 	next();
 });
 
-GalleryImage.schema.post('save', function () {
+GalleryImage.schema.post('save', async function () {
 	if (this.wasNew){
-    keystone.list('Gallery').model.findOne({ _id: this.galleryId}).exec((err, gallery)=>{
-      if (err) {
-        throw new Error(err);
-        return
-      }
-      gallery.images.push(this._id);
-      gallery.save((err, gallery)=>{
-        if (err) {
-          console.log(err);
-        }
-      });
-    })
+    try {
+  		let gallery = await keystone.list('Gallery').model.findOne({ _id: this.galleryId}).exec();
+  		gallery.images.push(this._id);
+  		gallery.save();
+  	} catch (e) {
+      console.log(err);
+  	}
   }
 });
 
@@ -71,6 +66,22 @@ var fs = require('fs');
 GalleryImage.schema.pre('remove', function (next) {
   fs.unlink(keystone.expandPath('/public'+this.url), (err) => console.log(err))
   next();
+});
+
+GalleryImage.schema.post('remove',async function() {
+	try {
+		let gallery = await keystone.list('Gallery').model.findOne({ _id: this.galleryId }).exec();
+		if (!gallery) {
+			next(new Error('This gallery does not exist'))
+		}
+		const index = gallery.images.findIndex(image=>(image.toString()===this._id.toString()));
+		if (index > -1) {
+			gallery.images.splice(index, 1);
+			gallery.save();
+		}
+	} catch (e) {
+		throw new Error(e);
+	}
 });
 
 // GalleryImage.schema.pre('remove', function (next) {

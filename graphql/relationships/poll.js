@@ -11,7 +11,7 @@ module.exports = () => {
   );
   PollTC.addRelation('aVotes', {
       resolver: () => PollVoteTC.getResolver('count'),
-      prepareArgs: { // resolver `findByIds` has `_ids` arg, let provide value to it
+      prepareArgs: {
         filter: (source) => ({vote: 'a', poll: source._id}),
       },
       projection: { votes: true }, // point fields in source object, which should be fetched from DB
@@ -19,7 +19,7 @@ module.exports = () => {
   );
   PollTC.addRelation('bVotes', {
       resolver: () => PollVoteTC.getResolver('count'),
-      prepareArgs: { // resolver `findByIds` has `_ids` arg, let provide value to it
+      prepareArgs: {
         filter: (source) => ({vote: 'b', poll: source._id}),
       },
       projection: { votes: true }, // point fields in source object, which should be fetched from DB
@@ -27,7 +27,7 @@ module.exports = () => {
   );
   PollTC.addRelation('cVotes', {
       resolver: () => PollVoteTC.getResolver('count'),
-      prepareArgs: { // resolver `findByIds` has `_ids` arg, let provide value to it
+      prepareArgs: {
         filter: (source) => ({vote: 'c', poll: source._id}),
       },
       projection: { votes: true }, // point fields in source object, which should be fetched from DB
@@ -35,7 +35,7 @@ module.exports = () => {
   );
   PollTC.addRelation('dVotes', {
       resolver: () => PollVoteTC.getResolver('count'),
-      prepareArgs: { // resolver `findByIds` has `_ids` arg, let provide value to it
+      prepareArgs: {
         filter: (source) => ({vote: 'd', poll: source._id}),
       },
       projection: { votes: true }, // point fields in source object, which should be fetched from DB
