@@ -51,7 +51,7 @@ keystone.set('nav', {
 	delegates: ['Delegate', 'DelegatePosition', 'DelegateSubPosition'],
 	homePage: ['Event', 'News'],
 	poll: ['Poll', 'PollVote'],
-	galleries: ['galleries', 'GalleryImage'],
+	galleries: 'galleries',
 	country: ['State', 'LocalGovernment', 'Ward', 'PollingCenter'],
 	//posts: ['posts', 'post-categories'],
 	enquiries: 'enquiries',
