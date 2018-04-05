@@ -58,6 +58,9 @@ keystone.set('nav', {
 	users: 'users',
 });
 
+// Configure cloudinary
+keystone.set('cloudinary config', process.env.CLOUDINARY_URL );
+
 // Start Keystone to connect to your database and initialise the web server
 
 
@@ -74,6 +77,8 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 const app = require('./lib/app');
 keystone.start({
     onHttpServerCreated: () => {
-			app.run();
+			if (process.env.NODE_ENV == 'production') {
+				app.run();
+			}
     }
 });
