@@ -33,7 +33,6 @@ const jwt = require('express-jwt');
 
 //const User = keystone.list('User').model;
 const Outlet = keystone.list('Outlet').model;
-const Candidate = keystone.list('Candidate').model;
 //const JWT_SECRET = require('../config').JWT_SECRET;
 
 if (process.env.NODE_ENV == 'development') {
