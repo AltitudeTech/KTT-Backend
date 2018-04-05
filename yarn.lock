@@ -3324,6 +3324,12 @@ graphql-compose-pagination@>=1.1.1:
   dependencies:
     babel-runtime "^6.26.0"
 
+graphql-compose-pagination@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-compose-pagination/-/graphql-compose-pagination-3.0.0.tgz#d445e37ca3939cdf7c73850fba5e6c793d28afaa"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 graphql-compose@^2.13.1:
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/graphql-compose/-/graphql-compose-2.13.1.tgz#8d132b1786a77e7016932c636fff6c2d39e239d3"

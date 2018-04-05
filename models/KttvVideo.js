@@ -14,7 +14,7 @@ var KttvVideo = new keystone.List('KttvVideo', {
 
 KttvVideo.add({
 	title: { type: String, required: true, index: true, initial: true },
-	publishedAt: { type: Types.Datetime, default: Date.now },
+	publishedAt: { type: Types.Datetime, default: Date.now, index: true },
 	url: { type: Types.Text, initial: true },
 	youtubeId: { type: Types.Text, initial: true },
 	description: { type: Types.Text, initial: true },
