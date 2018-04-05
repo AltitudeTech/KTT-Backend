@@ -13,12 +13,11 @@ Gallery.schema.set('usePushEach', true);
 Gallery.add({
 	name: { type: String, required: true },
 	publishedDate: { type: Date, default: Date.now },
-	images: { type: Types.Relationship, ref: 'GalleryImage', many: true, noedit: true },
-	/*heroImage: { type: Types.CloudinaryImage },
-	images: { type: Types.CloudinaryImages },*/
+	// heroImage: { type: Types.CloudinaryImage },
+	images: { type: Types.CloudinaryImages },
 });
 
-Gallery.relationship({ ref: 'GalleryImage', path: 'Gallery Images', refPath: 'galleryId' });
+// Gallery.relationship({ ref: 'GalleryImage', path: 'Gallery Images', refPath: 'galleryId' });
 
 /**
  * Registration
