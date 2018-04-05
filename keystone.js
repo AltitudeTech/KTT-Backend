@@ -74,6 +74,6 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 const app = require('./lib/app');
 keystone.start({
     onHttpServerCreated: () => {
-			app.run();
+	//app.run();
     }
 });
