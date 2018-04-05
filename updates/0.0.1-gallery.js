@@ -12,11 +12,10 @@ exports.create = {
 		{
 			"_id": "5abcf4ff841ed62488974761",
 			"key": "ktt-gallery",
-			"name": "KTT Gallery",
-			"images": [],
+			"name": "KTT Gallery",			
 			"publishedDate": "2018-03-29T14:15:27.000Z",
 			"__v": 5,
-			"imagess": [
+			"images": [
 				{
 					"public_id": "qgkasabhzfug6c5si8xm",
 					"version": 1522928963,
