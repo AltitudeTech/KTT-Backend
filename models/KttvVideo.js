@@ -19,6 +19,7 @@ KttvVideo.add({
 	youtubeId: { type: Types.Text, initial: true },
 	description: { type: Types.Text, initial: true },
 	thumbnailUrl: { type: Types.Text, initial: true },
+	thumbnailMaxResUrl: { type: Types.Text, initial: true },
 	// isPrivate: { type: Boolean, default: false }
 	/*image: { type: Types.CloudinaryImage },
 	images: { type: Types.CloudinaryImages },*/
