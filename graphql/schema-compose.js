@@ -19,7 +19,8 @@ const {
 	ViewerTC,
 	OutletViewerTC,
 	GalleryTC,
-	KttvVideoTC
+	KttvVideoTC,
+	MessageTC
 } = require('./composers/index');
 const addRelationships = require('./relationships');
 const addResolvers = require('./resolvers');
@@ -50,9 +51,9 @@ GQC.rootQuery().addFields({
 	lastPolls: lastPolls(PollTC),
 	nextEvent: nextEvent(EventTC),
 	outletMany: OutletTC.get('$findMany'),
-	pollById: PollTC.get('$findById'),
-	pollOne: PollTC.get('$findOne'),
-	pollMany: PollTC.get('$findMany'),
+	// pollById: PollTC.get('$findById'),
+	// pollOne: PollTC.get('$findOne'),
+	// pollMany: PollTC.get('$findMany'),
 	// pollVoteByIds: PollVoteTC.get('$findByIds'),
 	// pollVoteTotal: PollVoteTC.get('$count'),
 	KttvPagination: KttvVideoTC.get('$pagination'),
@@ -62,14 +63,15 @@ GQC.rootQuery().addFields({
 	localGovernmentMany: LocalGovernmentTC.get('$findMany'),
 	stateMany: StateTC.get('$findMany'),
 	galleryOne: GalleryTC.get('$findOne'),
-	galleryMany: GalleryTC.get('$findMany'),
-	KttvVideoMany: KttvVideoTC.get('$findMany'),
-	KttvPagination: KttvVideoTC.get('$pagination'),
+	// galleryMany: GalleryTC.get('$findMany'),
+	// KttvVideoMany: KttvVideoTC.get('$findMany'),
+	// KttvPagination: KttvVideoTC.get('$pagination'),
 });
 
 GQC.rootMutation().addFields({
 	login: OutletTC.get('$loginWithEmail'),
 	// pollVoteCreate: PollVoteTC.get('$createOne'),
+	messageCreate: MessageTC.get('$createOne'),
 	pollVoteVerify: PollVoteTC.get('$updateById'),
 	pollVoteCreate: createPollVote(PollVoteTC),
 });

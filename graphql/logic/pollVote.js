@@ -26,6 +26,7 @@ const createPollVote = exports.createPollVote = ( TC ) => {
 			} catch (e) {
 				return e;
 			}
+			return (e)
 		}
 	});
 }
