@@ -17,7 +17,7 @@ const State = keystone.list('State').model;
 const Outlet = keystone.list('Outlet').model;
 const OutletType = keystone.list('OutletType').model;
 const Gallery = keystone.list('Gallery').model;
-// const GalleryImage = keystone.list('GalleryImage').model;
+const Message = keystone.list('Message').model;
 const KttvVideo = keystone.list('KttvVideo').model;
 
 /**
@@ -55,7 +55,7 @@ const StateTC = exports.StateTC = composeWithMongoose(State, {});
 const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, UserTCOptions);
 const OutletTypeTC = exports.OutletTypeTC = composeWithMongoose(OutletType, {});
 const GalleryTC = exports.GalleryTC = composeWithMongoose(Gallery, {});
-// const GalleryImageTC = exports.GalleryImageTC = composeWithMongoose(GalleryImage, {});
+const MessageTC = exports.MessageTC = composeWithMongoose(Message, {});
 const KttvVideoTC = exports.KttvVideoTC = composeWithMongoose(KttvVideo, {});
 
 /**
