@@ -28,11 +28,25 @@ const UserTCOptions = {
     remove: ['password','isAdmin']
   }
 };
+const PollVoteTCOptions = {
+  resolvers:{
+    createOne: {
+      record: {
+        removeFields: ['createdAt', 'createdBy', 'updatedAt', 'updatedBy']
+      }
+    },
+    updateOne: {
+      record: {
+        removeFields: ['phoneNumber', 'poll', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy']
+      }
+    }
+  }
+};
 
 const UserTC = exports.UserTC = composeWithMongoose(User, UserTCOptions);
 const EventTC = exports.EventTC = composeWithMongoose(Event, {});
 const PollTC = exports.PollTC = composeWithMongoose(Poll, {});
-const PollVoteTC = exports.PollVoteTC = composeWithMongoose(PollVote, {});
+const PollVoteTC = exports.PollVoteTC = composeWithMongoose(PollVote, PollVoteTCOptions);
 const NewsTC = exports.NewsTC = composeWithMongoose(News, {});
 const PollingCenterTC = exports.PollingCenterTC = composeWithMongoose(PollingCenter, {});
 const WardTC = exports.WardTC = composeWithMongoose(Ward, {});

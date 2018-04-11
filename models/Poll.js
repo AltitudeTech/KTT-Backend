@@ -40,10 +40,10 @@ Poll.add({
 
 Poll.schema.pre('save', async function (next) {
   this.title = this.name;
-  this.option1.votes = await keystone.list('PollVote').model.count({vote: 'a', poll: this._id}).exec();
-  this.option2.votes = await keystone.list('PollVote').model.count({vote: 'b', poll: this._id}).exec();
-  this.option3.votes = await keystone.list('PollVote').model.count({vote: 'c', poll: this._id}).exec();
-  this.option4.votes = await keystone.list('PollVote').model.count({vote: 'd', poll: this._id}).exec();
+  this.option1.votes = await keystone.list('PollVote').model.count({vote: 'a', poll: this._id, isVerified: true}).exec();
+  this.option2.votes = await keystone.list('PollVote').model.count({vote: 'b', poll: this._id, isVerified: true}).exec();
+  this.option3.votes = await keystone.list('PollVote').model.count({vote: 'c', poll: this._id, isVerified: true}).exec();
+  this.option4.votes = await keystone.list('PollVote').model.count({vote: 'd', poll: this._id, isVerified: true}).exec();
   this.totalVotes = this.option1.votes + this.option2.votes + this.option3.votes + this.option4.votes;
   next();
 })

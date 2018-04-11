@@ -29,6 +29,7 @@ const addViewers = require('./viewers');
 const { authAccess, updateSelf, createSelfRelationship, updateSelfRelationship } = require('./logic/common');
 const { nextEvent } = require('./logic/event');
 const { lastPolls } = require('./logic/poll');
+const { createPollVote } = require('./logic/pollVote');
 
 //Add relationships and resolvers to schema
 addViewers();
@@ -67,7 +68,10 @@ GQC.rootQuery().addFields({
 });
 
 GQC.rootMutation().addFields({
-	login: OutletTC.get('$loginWithEmail')
+	login: OutletTC.get('$loginWithEmail'),
+	// pollVoteCreate: PollVoteTC.get('$createOne'),
+	pollVoteVerify: PollVoteTC.get('$updateById'),
+	pollVoteCreate: createPollVote(PollVoteTC),
 });
 
 const schema = GQC.buildSchema();
