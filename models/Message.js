@@ -13,15 +13,17 @@ var Message = new keystone.List('Message', {
 });
 
 Message.add({
-	name: { type: Types.Name, initial: true, required: true},
+	name: { type: Types.Text, initial: true, required: true},
+	// name: { type: Types.Name, initial: true, required: true},
 	email: { type: Types.Email, initial: true, required: false, index: true },
 	phone: { type: String, index: true },
+	message: { type: Types.Textarea, initial: true, required: true },
 	// MessageType: { type: Types.Select, options: [
 	// 	{ value: 'message', label: 'Just leaving a message' },
 	// 	{ value: 'question', label: 'I\'ve got a question' },
 	// 	{ value: 'other', label: 'Something else...' },
 	// ] },
-	content: { type: Types.Markdown, initial: true, required: true },
+	// content: { type: Types.Markdown, initial: true, required: true },
 });
 /*
 Message.schema.pre('save', function (next) {
