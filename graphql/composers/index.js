@@ -17,7 +17,7 @@ const State = keystone.list('State').model;
 const Outlet = keystone.list('Outlet').model;
 const OutletType = keystone.list('OutletType').model;
 const Gallery = keystone.list('Gallery').model;
-// const GalleryImage = keystone.list('GalleryImage').model;
+const Message = keystone.list('Message').model;
 const KttvVideo = keystone.list('KttvVideo').model;
 
 /**
@@ -28,11 +28,25 @@ const UserTCOptions = {
     remove: ['password','isAdmin']
   }
 };
+const PollVoteTCOptions = {
+  resolvers:{
+    createOne: {
+      record: {
+        removeFields: ['createdAt', 'createdBy', 'updatedAt', 'updatedBy']
+      }
+    },
+    updateOne: {
+      record: {
+        removeFields: ['phoneNumber', 'poll', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy']
+      }
+    }
+  }
+};
 
 const UserTC = exports.UserTC = composeWithMongoose(User, UserTCOptions);
 const EventTC = exports.EventTC = composeWithMongoose(Event, {});
 const PollTC = exports.PollTC = composeWithMongoose(Poll, {});
-const PollVoteTC = exports.PollVoteTC = composeWithMongoose(PollVote, {});
+const PollVoteTC = exports.PollVoteTC = composeWithMongoose(PollVote, PollVoteTCOptions);
 const NewsTC = exports.NewsTC = composeWithMongoose(News, {});
 const PollingCenterTC = exports.PollingCenterTC = composeWithMongoose(PollingCenter, {});
 const WardTC = exports.WardTC = composeWithMongoose(Ward, {});
@@ -41,7 +55,7 @@ const StateTC = exports.StateTC = composeWithMongoose(State, {});
 const OutletTC = exports.OutletTC = composeWithMongoose(Outlet, UserTCOptions);
 const OutletTypeTC = exports.OutletTypeTC = composeWithMongoose(OutletType, {});
 const GalleryTC = exports.GalleryTC = composeWithMongoose(Gallery, {});
-// const GalleryImageTC = exports.GalleryImageTC = composeWithMongoose(GalleryImage, {});
+const MessageTC = exports.MessageTC = composeWithMongoose(Message, {});
 const KttvVideoTC = exports.KttvVideoTC = composeWithMongoose(KttvVideo, {});
 
 /**
