@@ -13,7 +13,7 @@ Article.add({
   title: { type: String, required: true, index: true, initial: true },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-  //heroImage: { type: Types.CloudinaryImage },
+  // heroImage: { type: Types.CloudinaryImage },
   author: {type: Types.Text, initial: true, index: true},
   isBreaking: {type: Boolean, default: false, initial: true, index: true},
   brief: {type: Types.Textarea, index: true, height: 150},
