@@ -13,7 +13,7 @@ Poll.schema.set('usePushEach', true);
 Poll.add({
   name: { type: String, required: true, index: true },
   title: { type: String, noedit: true },
-  tagLine: { type: Types.Text, index: true, initial: true, required: true },
+  // tagLine: { type: Types.Text, index: true, initial: true, required: true },
   // postTagLine: {type: Boolean, default: false, initial: true},
   //state: { type: Types.Select, options: 'scheduled, active, archived', default: 'scheduled', index: true },
   startDate: { type: Types.Date, index: true, initial: true, required: true },
