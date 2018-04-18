@@ -7,6 +7,12 @@ const lastPolls = exports.lastPolls = (TC) => {
 				_operators: { startDate: { lte: new Date().toISOString() } }
 			}
 		}
-		return next(rp);
+		try {
+			const result = await next(rp);
+			result.id = result._id;
+			return result;
+		} catch (e) {
+			return (e);
+		}
 	});
 }
