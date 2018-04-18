@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
-const { PHONE_REGEX } = require('../lib/common');
+const { PHONE_REGEX } = require('../utils/common');
 
 /**
  * PollVote Model

@@ -62,6 +62,7 @@ const KttvVideoTC = exports.KttvVideoTC = composeWithMongoose(KttvVideo, {});
 * Add JWT to user models for login
 */
 UserTC.addFields({jwt: 'String'})
+PollTC.addFields({id: 'String'})
 OutletTC.addFields({jwt: 'String'})
 
 //Viewer Types for restricted data access
